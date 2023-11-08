@@ -1,0 +1,27 @@
+{
+	"name": "Node.js & PostgreSQL",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+	"hostRequirements": { "cpus": 4 },
+	"features": {
+		"ghcr.io/shyim/devcontainers-features/bun:0": {}
+	},
+	// PORTAS:
+	//	3000: API Backend
+	//	5432: Banco de Dados PostgreSQL 
+	//	5173: Vite Frontend 
+	"forwardPorts": [3000, 5432, 5173],
+	"customizations": {
+		"vscode": {
+			"extensions": ["PKief.material-icon-theme", "Prisma.prisma", "esbenp.prettier-vscode"],
+			"settings": {
+				"editor.defaultFormatter": "esbenp.prettier-vscode",
+				"workbench.iconTheme": "material-icon-theme",
+				"editor.minimap.enabled": false,
+				"editor.fontFamily": "Cascadia Mono",
+				"editor.fontLigatures": true
+			}
+		}
+	}
+}

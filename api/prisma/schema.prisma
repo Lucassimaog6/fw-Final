@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model DiaSemana {
+  id         Int    @id @default(autoincrement())
+  nome       String
+  abreviacao String
+  Aula       Aula[]
+}
+
+model Horario {
+  id   Int    @id @default(autoincrement())
+  Aula Aula[]
+}
+
+model Turno {
+  id   Int    @id @default(autoincrement())
+  nome String
+  Aula Aula[]
+}
+
+model Professor {
+  id   Int    @id @default(autoincrement())
+  nome String
+  Aula Aula[]
+}
+
+model Disciplina {
+  id   Int    @id @default(autoincrement())
+  nome String
+  Aula Aula[]
+}
+
+model Turma {
+  id   Int    @id @default(autoincrement())
+  nome String
+  Aula Aula[]
+}
+
+model Aula {
+  id           Int        @id @default(autoincrement())
+  data         DateTime   @db.Date
+  dia_semana   DiaSemana  @relation(fields: [diaSemanaId], references: [id])
+  turno        Turno      @relation(fields: [turnoId], references: [id])
+  horario      Horario    @relation(fields: [horarioId], references: [id])
+  professor    Professor  @relation(fields: [professorId], references: [id])
+  disciplina   Disciplina @relation(fields: [disciplinaId], references: [id])
+  turma        Turma      @relation(fields: [turmaId], references: [id])
+  diaSemanaId  Int
+  turnoId      Int
+  horarioId    Int
+  professorId  Int
+  disciplinaId Int
+  turmaId      Int
+}
